@@ -8,6 +8,7 @@
 
 #import "QMAudioRecordButton.h"
 #import "QMChatResources.h"
+#import <AudioToolbox/AudioServices.h>
 
 static const CGFloat _innerCircleRadius = 110.0f;
 static const CGFloat _outerCircleRadius = _innerCircleRadius + 50.0f;
@@ -319,6 +320,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)__unus
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     
     if (!self.enabled || self.hidden) {
         return [super pointInside:point withEvent:event];
